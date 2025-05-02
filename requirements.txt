@@ -1,3 +1,4 @@
 # ... other Kokoro dependencies ...
 fastapi
 uvicorn
+torch
