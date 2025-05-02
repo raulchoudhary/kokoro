@@ -38,6 +38,47 @@ from kokoro import KPipeline
 from IPython.display import display, Audio
 import soundfile as sf
 import torch
+## Deployment on Railway.com
+
+To deploy Kokoro on [Railway.com](https://railway.com), follow these steps:
+
+1. Ensure your Railway project uses a Python environment.
+2. Add the `requirements.txt` file to your project root (already present) to install dependencies automatically.
+3. Railway may have limited storage and no GPU support by default. Kokoro downloads large model files (~82M parameters) at runtime, so ensure your Railway plan supports sufficient storage and runtime duration.
+4. You can run the Kokoro CLI or integrate it into your app as usual. For example, use:
+
+```bash
+python3 -m kokoro --text "Your text here" -o output.wav
+```
+
+5. If you want to run a web app, consider using the `demo/app.py` with a suitable web server setup.
+6. Add any Railway-specific configuration files (`railway.toml`) as needed for environment variables or build commands.
+
+Note: You may want to pin the `numpy` version to `<2.0` in `requirements.txt` to avoid compatibility issues.
+
+---
+
+=======
+## Deployment on Railway.com
+
+To deploy Kokoro on [Railway.com](https://railway.com), follow these steps:
+
+1. Ensure your Railway project uses a Python environment.
+2. Add the `requirements.txt` file to your project root (already present) to install dependencies automatically.
+3. Railway may have limited storage and no GPU support by default. Kokoro downloads large model files (~82M parameters) at runtime, so ensure your Railway plan supports sufficient storage and runtime duration.
+4. You can run the Kokoro CLI or integrate it into your app as usual. For example, use:
+
+```bash
+python3 -m kokoro --text "Your text here" -o output.wav
+```
+
+5. If you want to run a web app, consider using the `demo/app.py` with a suitable web server setup.
+6. Add any Railway-specific configuration files (`railway.toml`) as needed for environment variables or build commands.
+
+Note: You may want to pin the `numpy` version to `<2.0` in `requirements.txt` to avoid compatibility issues.
+
+---
+>>>>>>> eb3b492 (Add deployment instructions for railway.com to README.md)
 # 🇺🇸 'a' => American English, 🇬🇧 'b' => British English
 # 🇪🇸 'e' => Spanish es
 # 🇫🇷 'f' => French fr-fr
