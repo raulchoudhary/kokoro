@@ -3,3 +3,6 @@ fastapi
 uvicorn
 torch
 torchvision
+torchaudio
+kokoro
+soundfile
