@@ -56,7 +56,69 @@ python3 -m kokoro --text "Your text here" -o output.wav
 
 Note: You may want to pin the `numpy` version to `<2.0` in `requirements.txt` to avoid compatibility issues.
 
+# Installation and Usage on a Server
+
+This section provides clear instructions for installing and running the Kokoro TTS engine on a server environment.
+
+## Installation
+
+1. Clone the repository or download the source code.
+
+2. Ensure you have Python 3.9 or higher installed.
+
+3. Install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Install `espeak-ng` for English and some non-English language support:
+
+```bash
+sudo apt-get install espeak-ng
+```
+
+5. Make sure the `start.sh` script is executable:
+
+```bash
+chmod +x start.sh
+```
+
+## Running the Engine
+
+You can start the Kokoro TTS service using the provided `start.sh` script, which installs dependencies and runs the FastAPI server:
+
+```bash
+./start.sh
+```
+
+The service listens on the port specified by the `PORT` environment variable. Make sure to set this variable appropriately in your server environment.
+
+## Using the Engine
+
+Once the service is running, you can send POST requests to the `/synthesize` endpoint with a JSON body containing the text and voice parameters. For example:
+
+```json
+{
+  "text": "Hello, this is a test message.",
+  "voice": "af_heart",
+  "speed": 1.0,
+  "split_pattern": "\\n+"
+}
+```
+
+The service will respond with an audio stream in WAV format.
+
+## Example with `curl`
+
+```bash
+curl -X POST "http://localhost:$PORT/synthesize" \
+     -H "Content-Type: application/json" \
+     -d '{"text":"Hello, this is a test message.","voice":"af_heart","speed":1.0,"split_pattern":"\\n+"}' --output output.wav
+```
+
 ---
+
 
 =======
 ## Deployment on Railway.com
