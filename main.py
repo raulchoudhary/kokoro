@@ -50,9 +50,14 @@ async def load_kokoro_model():
 app = FastAPI()
 
 # Register the startup event to load the Kokoro model
-@app.on_event("startup")
-async def startup_event():
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     await load_kokoro_model()
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 # Define a request body model for the API call
 class SynthesisRequest(BaseModel):
