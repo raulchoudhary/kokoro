@@ -4,7 +4,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 import uvicorn
-import torch # Kokoro uses torch, good to import it
+
 
 # --- Actual Kokoro TTS import ---
 # Import the necessary class from the kokoro library
